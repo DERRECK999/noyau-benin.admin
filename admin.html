@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tableau de bord d'administration Noyau — suivi des locations et commissions au Bénin.">
+  <title>Administration — Noyau</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+  <script src="admin.js" defer></script>
+</head>
+<body class="admin-body">
+  <aside class="admin-sidebar">
+    <a class="brand admin-brand" href="index.html"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>Noyau<span class="brand-period">.</span></span></a>
+    <div class="admin-workspace"><span class="workspace-icon">N</span><span><strong>Équipe Noyau</strong><small>Espace administration</small></span><span class="workspace-chevron">⌄</span></div>
+    <span class="sidebar-label">MENU PRINCIPAL</span>
+    <nav class="admin-nav" aria-label="Navigation administration"><a class="selected" href="#dashboard"><span>◫</span>Vue d’ensemble</a><a href="#transactions"><span>↗</span>Locations conclues <i>8</i></a><a href="index.html"><span>⌂</span>Voir le site</a></nav>
+    <div class="sidebar-bottom"><div class="sidebar-help"><span>✳</span><strong>Un coup de main ?</strong><small>Notre équipe est là pour vous.</small><a href="mailto:bonjour@noyau.bj">Contacter le support ↗</a></div><div class="admin-user"><span class="user-avatar">AN</span><span><strong>Administrateur</strong><small>admin@noyau.bj</small></span><button type="button" aria-label="Options du compte">···</button></div></div>
+  </aside>
+
+  <main class="admin-main" id="dashboard">
+    <header class="admin-topbar"><div class="breadcrumbs">Espace administration <span>/</span> <strong>Vue d’ensemble</strong></div><div class="admin-top-actions"><span class="admin-live"><i></i> Données actualisées</span><button class="admin-icon-button" type="button" aria-label="Notifications">♧<i></i></button><a class="view-site-link" href="index.html">Voir le site <span>↗</span></a></div></header>
+    <div class="admin-content">
+      <div class="dashboard-heading"><div><p class="eyebrow">SAMEDI 17 OCTOBRE 2026</p><h1>Bonjour, équipe Noyau <span>✳</span></h1><p>Voici ce qui se passe sur votre plateforme.</p></div><button class="button export-button" id="export-report" type="button"><span>↓</span> Exporter le rapport</button></div>
+      <section class="period-row" aria-label="Période du rapport"><span>PÉRIODE :</span><div class="period-selector"><button class="period-button" data-period="1" type="button">30 jours</button><button class="period-button selected" data-period="3" type="button">3 mois</button><button class="period-button" data-period="6" type="button">6 mois</button><button class="period-button" data-period="12" type="button">12 mois</button></div><span class="period-date" id="period-date">Août — Octobre 2026</span></section>
+      <section class="metric-grid" aria-label="Indicateurs clés">
+        <article class="metric-card"><div class="metric-top"><span>Visites des annonces</span><span class="metric-icon sage">◉</span></div><strong class="metric-value" id="visits-value">12 840</strong><div class="metric-foot"><span class="trend-up">↗ +12,8 %</span><span>vs. période précédente</span></div><div class="metric-spark" id="visits-spark"></div></article>
+        <article class="metric-card"><div class="metric-top"><span>Locations conclues</span><span class="metric-icon lavender">⌂</span></div><strong class="metric-value" id="deals-value">86</strong><div class="metric-foot"><span class="trend-up">↗ +8,2 %</span><span>vs. période précédente</span></div><div class="metric-spark" id="deals-spark"></div></article>
+        <article class="metric-card commission-card"><div class="metric-top"><span>Commissions perçues</span><span class="metric-icon gold">₣</span></div><strong class="metric-value" id="commission-value">2 784 000 <small>FCFA</small></strong><div class="metric-foot"><span class="trend-up">↗ +10,4 %</span><span>10 % · durée min. 3 mois</span></div><div class="metric-spark" id="commission-spark"></div></article>
+        <article class="metric-card"><div class="metric-top"><span>Annonces actives</span><span class="metric-icon blue">▤</span></div><strong class="metric-value" id="listings-value">248</strong><div class="metric-foot"><span class="trend-up">↗ +18 nouvelles</span><span>ce mois-ci</span></div><div class="metric-spark" id="listings-spark"></div></article>
+      </section>
+
+      <section class="admin-charts">
+        <article class="admin-panel chart-panel"><div class="panel-heading"><div><h2>Activité de la plateforme</h2><p>Visites et locations conclues</p></div><label class="chart-legend"><span><i class="legend-visits"></i> Visites</span><span><i class="legend-deals"></i> Locations</span><select id="chart-period" aria-label="Période du graphique"><option value="visits">Visites</option><option value="deals">Locations</option></select></label></div><div class="chart-total"><strong id="chart-total">12 840</strong><span id="chart-total-label">visites sur la période</span><span class="chart-change">↗ 12,8 %</span></div><div class="chart-area"><div class="chart-y-axis" id="chart-y-axis"></div><div class="chart-plot" id="chart-plot"></div></div></article>
+        <article class="admin-panel commission-panel"><div class="panel-heading"><div><h2>Vos commissions</h2><p>Calculées sur 3 mois minimum</p></div><span class="commission-mark">₣</span></div><div class="commission-total" id="commission-panel-total">2 784 000 <small>FCFA</small></div><p class="commission-explain">10 % du montant locatif conclu<br><strong>Loyer mensuel × 3 mois × 10 %</strong></p><div class="commission-separator"></div><div class="commission-mini"><span>Locations sur la période</span><strong id="commission-deals">86</strong></div><div class="commission-mini"><span>Commission moyenne / location</span><strong id="commission-average">32 372 FCFA</strong></div><div class="commission-mini"><span>Propriétaires actifs</span><strong>164</strong></div><a href="#transactions" class="text-link">Voir le détail des commissions ↗</a></article>
+      </section>
+
+      <section class="admin-panel transactions-panel" id="transactions"><div class="panel-heading transaction-heading"><div><h2>Dernières locations conclues</h2><p>Suivez les transactions et les commissions associées.</p></div><div class="table-actions"><button class="table-filter" type="button" id="transaction-filter">Toutes les locations <span>⌄</span></button><a href="#transactions" class="text-link">Tout voir ↗</a></div></div>
+        <div class="table-scroll"><table><thead><tr><th>LOGEMENT</th><th>LOCATAIRE</th><th>PROPRIÉTAIRE</th><th>LOYER MENSUEL</th><th>COMMISSION (3 MOIS)</th><th>STATUT</th></tr></thead><tbody id="transaction-body"></tbody></table></div>
+        <div class="table-footer"><span id="transaction-count">8 transactions récentes</span><div><button type="button" aria-label="Page précédente">←</button><span>1 / 4</span><button type="button" aria-label="Page suivante">→</button></div></div>
+      </section>
+      <footer class="admin-footer"><span>© 2026 Noyau · Tableau de bord prototype</span><span>Les indicateurs présentés sont des données de démonstration.</span></footer>
+    </div>
+  </main>
+</body>
+</html>
